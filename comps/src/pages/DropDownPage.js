@@ -1,4 +1,4 @@
-import DropDown from './components/DropDown'
+import DropDown from '../components/DropDown'
 import { useState } from 'react';
 
 function DropDownPage() {
@@ -25,7 +25,6 @@ function DropDownPage() {
 
   return (
     <div className='flex'>
-        <DropDown options={ options } onChange={ handleSelect } value={ selection }/>
         <DropDown options={ options } onChange={ handleSelect } value={ selection }/>
     </div>
   );
