@@ -1,10 +1,9 @@
 import Table from './Table';
-import { useState } from 'react';
 import { GoArrowSmallDown, GoArrowSmallUp } from 'react-icons/go';
+import useSorting from '../hooks/use-sorting';
 
 function SortableTable(props) {
-    const [ sortOrder, setSortOrder ] = useState(null);
-    const [ sortBy, setSortBy ] = useState(null);
+    const { sortOrder, sortBy, handleClick } = useSorting();
     const { config, data } = props;
 
     const updatedConfig = config.map((column) => {
@@ -71,25 +70,6 @@ function SortableTable(props) {
             }
         });
     }
-
-    const handleClick = (label) => {
-        if (sortBy && label !== sortBy){
-            setSortOrder('asc');
-            setSortBy(label);
-            return;
-        }
-
-        if (sortOrder === null){
-            setSortOrder('asc');
-            setSortBy(label);
-        } else if (sortOrder === 'asc'){
-            setSortOrder('desc');
-            setSortBy(label);
-        } else if (sortOrder === 'desc'){
-            setSortOrder(null);
-            setSortBy(null);
-        }
-    };
 
     return (
         <Table { ...props } config={ updatedConfig } data={ sortedData } />
