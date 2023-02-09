@@ -6,6 +6,8 @@ import ButtonPage from './pages/ButtonPage';
 import ModalPage from './pages/ModalPage';
 import TablePage from './pages/TablePage';
 import CounterPage from './pages/CounterPage';
+import CounterReducerPage from './pages/CounterReducerPage';
+import CustomCounterPage from './pages/CustomCounterPage';
 
 function App() {
   return (
@@ -29,6 +31,12 @@ function App() {
         </Route>
         <Route path='/counter'>
           <CounterPage initialCount={ 10 } />
+        </Route>
+        <Route path='/customcounter'>
+          <CustomCounterPage initialCount={ 10 } />
+        </Route>
+        <Route path='/counterreducer'>
+          <CounterReducerPage initialCount={ 10 } />
         </Route>
       </div>
     </div>
