@@ -3,8 +3,8 @@ import { GoArrowSmallDown, GoArrowSmallUp } from 'react-icons/go';
 import useSorting from '../hooks/use-sorting';
 
 function SortableTable(props) {
-    const { sortOrder, sortBy, handleClick } = useSorting();
     const { config, data } = props;
+    const { sortOrder, sortBy, sortedData, handleClick } = useSorting(config, data);
 
     const updatedConfig = config.map((column) => {
         if (!column.sortValue){
@@ -52,24 +52,6 @@ function SortableTable(props) {
             );
         }
     };
-
-    let sortedData = data;
-
-    if (sortOrder !== null && sortBy !== null){
-        const { sortValue } = config.find(column => column.label === sortBy);
-        sortedData = [...data].sort((a,b) => {
-            const valueA = sortValue(a);
-            const valueB = sortValue(b);
-
-            const reverseOrder = sortOrder === 'asc' ? 1 : -1;
-
-            if (typeof valueA === 'string'){
-                return valueA.localeCompare(valueB) * reverseOrder;
-            } else {
-                return (valueA - valueB) * reverseOrder;
-            }
-        });
-    }
 
     return (
         <Table { ...props } config={ updatedConfig } data={ sortedData } />
